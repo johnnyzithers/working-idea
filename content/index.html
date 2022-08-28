@@ -3,12 +3,13 @@
 <head>
     <title>My Website</title>
     <link rel="stylesheet" href="css/base.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="js/layout.js"></script> 
-
     <style>
 
         body {
             padding: 1rem;
+            height: 90vh;
             margin: 4rem;
             border: 2px black dashed;
         }
@@ -35,11 +36,14 @@
 
         .holder {
             display: flex;
-            align-items: center;
+            /* align-items: center; */
             justify-content: center;
+            
+
         }
         .wrapper {
             display: grid;
+
             /* grid-gap: 1em; */
             grid-template-areas:
                 "header"
@@ -76,8 +80,8 @@
             background-color: #444;
             color: #fff;
             border-radius: 5px;
-            margin: 10px;
-            font-size: 150%;    
+            /* margin: 10px; */
+            font-size: 1.2em;    
         }
 
         .header,
@@ -93,7 +97,12 @@
         .content {
             display: grid;
             grid-template-columns: 100px 100px 100px;
-            grid-gap: 10px;
+            /* grid-gap: 10px; */
+            background-color:white;
+            border: 3px black dashed;
+            height: 40vh;
+            width: 40vh;
+            /* height: auto; */
         }
 
         .box {
@@ -102,6 +111,12 @@
             color: #fff;
             border-radius: 2px;
             
+        }
+        .tile-box {
+            /* display: flex; */
+            border: 1px white solid;
+            color: #fff;
+            border-radius: 2px;
         }
 
         .button{
@@ -112,8 +127,8 @@
 
         .close-button{
             border: 1px white solid;
-            width: 1em;
-            height: 1em;
+            width: 0.5em;
+            height: 0.51em;
 
             margin-left: auto;
             order: 2;
@@ -146,32 +161,32 @@
             </div>
             
             <div class="box content">
-                <div class="box" id="id1">
-                    <div class="close-button" id="close-1">x</div>
+                <div class="tile-box" id="id1">
+                    <div class="close-button" id="close-1" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id2">
-                    <div class="close-button" id="close-2">x</div>
+                <div class="tile-box" id="id2">
+                    <div class="close-button" id="close-2" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id3">
-                    <div class="close-button" id="close-3">x</div>
+                <div class="tile-box" id="id3">
+                    <div class="close-button" id="close-3" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id4">
-                    <div class="close-button" id="close-4">x</div>
+                <div class="tile-box" id="id4">
+                    <div class="close-button" id="close-4" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id5">
-                    <div class="close-button" id="close-5">x</div>
+                <div class="tile-box" id="id5">
+                    <div class="close-button" id="close-5" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id6">
-                    <div class="close-button" id="close-6">x</div>
+                <div class="tile-box" id="id6">
+                    <div class="close-button" id="close-6" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id7">
-                    <div class="close-button" id="close-7">x</div>
+                <div class="tile-box" id="id7">
+                    <div class="close-button" id="close-7" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id8">
-                    <div class="close-button" id="close-8">x</div>
+                <div class="tile-box" id="id8">
+                    <div class="close-button" id="close-8" onclick="closeDiv(this)">x</div>
                 </div>
-                <div class="box" id="id9">
-                    <div class="close-button" id="close-9">x</div>
+                <div class="tile-box" id="id9">
+                    <div class="close-button" id="close-9" onclick="closeDiv(this)">x</div>
                 </div>  
             </div>
             <div class="box sidebar2">Sidebar 2</div>
