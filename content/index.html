@@ -95,13 +95,14 @@
         }
 
         .content {
+            position: relative;
             display: grid;
             grid-template-columns: 100px 100px 100px;
             /* grid-gap: 10px; */
             background-color:white;
             border: 3px black dashed;
-            height: 40vh;
-            width: 40vh;
+            height: 60vh;
+            width: 60vh;
             /* height: auto; */
         }
 
@@ -112,11 +113,27 @@
             border-radius: 2px;
             
         }
+
+        .tile-header {
+            background-color: paleturquoise;
+            /* width:3em; */
+        }
+
         .tile-box {
-            /* display: flex; */
+            position: absolute;
+            display: grid;
+            grid-template-columns: 80% 20%;
+            grid-template-rows: 20% 80%;
+                grid-template-areas:
+                "tile-header   tile-close"
+                "tile-content tile-content";
+            height: 8em;
+            width: 8em;
+
             border: 1px white solid;
             color: #fff;
             border-radius: 2px;
+            
         }
 
         .button{
@@ -128,7 +145,7 @@
         .close-button{
             border: 1px white solid;
             width: 0.5em;
-            height: 0.51em;
+            height: 0.5em;
 
             margin-left: auto;
             order: 2;
@@ -138,9 +155,6 @@
             justify-content: center;
         }
 
-        #id5 {
-            /* flex-grow: 2; */
-        }
     </style>
 </head>
 
@@ -154,40 +168,37 @@
                 Header        
             </div>
             <div class="box sidebar">
-                <div class="button"></div>
-                <div class="button"></div>
-                <div class="button"></div>
+                <div class='button' id='create-tile' onclick="createDiv()"></div>
+                <!-- <div class="button"></div> -->
+                <!-- <div class="button"></div> -->
 
             </div>
             
-            <div class="box content">
+            <div class="box content" id="tile-container">
                 <div class="tile-box" id="id1">
-                    <div class="close-button" id="close-1" onclick="closeDiv(this)">x</div>
+                    <!-- header button  -->
+                    <div class='tile-header' id='header-1'> header </div>
+                    <!-- close button 'x' -->
+                    <div class='tile-close' id="close-1" onclick="closeDiv(this)">x</div>
+                    <!-- tile content -->
+                    <div class='tile-content' id="content-1"> tile - content </div>
                 </div>
                 <div class="tile-box" id="id2">
-                    <div class="close-button" id="close-2" onclick="closeDiv(this)">x</div>
+                    <!-- header button  -->
+                    <div class='tile-header' id='header-2'> header </div>
+                    <!-- close button 'x' -->
+                    <div class='tile-close' id="close-2" onclick="closeDiv(this)">x</div>
+                    <!-- tile content -->
+                    <div class='tile-content' id="content-2"> tile - content </div>
                 </div>
                 <div class="tile-box" id="id3">
-                    <div class="close-button" id="close-3" onclick="closeDiv(this)">x</div>
+                    <!-- header button  -->
+                    <div class='tile-header' id='header-3'> header </div>
+                    <!-- close button 'x' -->
+                    <div class='tile-close' id="close-3" onclick="closeDiv(this)">x</div>
+                    <!-- tile content -->
+                    <div class='tile-content' id="content-3"> tile - content </div>
                 </div>
-                <div class="tile-box" id="id4">
-                    <div class="close-button" id="close-4" onclick="closeDiv(this)">x</div>
-                </div>
-                <div class="tile-box" id="id5">
-                    <div class="close-button" id="close-5" onclick="closeDiv(this)">x</div>
-                </div>
-                <div class="tile-box" id="id6">
-                    <div class="close-button" id="close-6" onclick="closeDiv(this)">x</div>
-                </div>
-                <div class="tile-box" id="id7">
-                    <div class="close-button" id="close-7" onclick="closeDiv(this)">x</div>
-                </div>
-                <div class="tile-box" id="id8">
-                    <div class="close-button" id="close-8" onclick="closeDiv(this)">x</div>
-                </div>
-                <div class="tile-box" id="id9">
-                    <div class="close-button" id="close-9" onclick="closeDiv(this)">x</div>
-                </div>  
             </div>
             <div class="box sidebar2">Sidebar 2</div>
             <div class="box footer">Footer</div>    
