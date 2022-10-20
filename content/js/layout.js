@@ -1,3 +1,68 @@
+// import { Tile, initHTML } from './Tiles.js';
+
+var defaultBgColor = 'paleyellow';
+
+
+class Tile{
+  constructor(state, bgColor) {
+      // FIXME make struct?
+      this.state = 0;
+      this.bgColor = defaultBgColor;
+  }
+
+  setState(newState) {
+      this.state = newState;
+  }
+  initHTML() { 
+    console.log("Tiles.initHTML()");
+    // create new divs
+    const main = document.createElement("div");
+    main.className = "tile-box";
+    // create header
+    const header = document.createElement("div");
+    header.className = "tile-header";
+    const headerContent = document.createTextNode("header");
+    header.appendChild(headerContent);
+    // create edit button
+    const edit = document.createElement("div");
+    edit.className = "tile-edit";
+    const editContent = document.createTextNode("E");
+    const thisEditId = 'edit-9';
+    edit.id = thisEditId;
+    edit.addEventListener('click', function(e) {
+      editDivContents(document.getElementById(thisEditId));
+    });
+    edit.appendChild(editContent);
+    // create close button
+    const close = document.createElement("div");
+    close.className = "tile-close";
+    const closeContent = document.createTextNode("X");
+    const thisId = "close-9";
+    close.id = thisId;
+    close.addEventListener('click', function(e) {
+      closeDiv(document.getElementById(thisId));
+    });
+    close.appendChild(closeContent);
+    // create content area
+    const content = document.createElement("div");
+    content.className = "tile-content";
+    const contentContent = document.createTextNode("content");
+    content.appendChild(contentContent);
+    // add all sections to main
+    main.appendChild(header);
+    main.appendChild(edit);
+    main.appendChild(close);
+    main.appendChild(content);
+    // add the newly created Tile into the DOM
+    const containerDiv = document.getElementById("tile-container");
+    containerDiv.appendChild(main);
+    makeDraggable(main);
+  }
+  
+  
+} 
+
+
 window.addEventListener('load', (event) => {
     // get all divs 
     const divs = document.getElementById('tile-container').getElementsByClassName('tile-box');
@@ -9,65 +74,24 @@ window.addEventListener('load', (event) => {
         divStyle.left = i * 38 + '%';
         console.log(divs[i] + " " + divStyle);
         makeDraggable(divs[i]);
-    }
-    
-
-
+    } 
   });
 
 
-
-
 function createDiv () {
-
-  console.log("addElement()");
-    // create new divs
-    const main = document.createElement("div");
-    main.className = "tile-box";
-
-    const header = document.createElement("div");
-    header.className = "tile-header";
-    const headerContent = document.createTextNode("header");
-    header.appendChild(headerContent);
-
-    const close = document.createElement("div");
-    close.className = "tile-close";
-    const closeContent = document.createTextNode("x");
-    
-    const thisId = "close-9";
-    close.id = thisId;
-    close.addEventListener('click', function(e) {
-      console.log(close);
-      closeDiv(document.getElementById(thisId));
-    });
-    close.appendChild(closeContent);
-
-    const content = document.createElement("div");
-    content.className = "tile-content";
-    const contentContent = document.createTextNode("content");
-    content.appendChild(contentContent);
-    content.innerHTML = "<iframe src=\"https://www.jquery.com/\" width = \"500px\" height = \"500px\"> </iframe>";
-    
-
-
-
+  // FIXME add to data structure
   
-    // add the text node to the newly created div
-    
-    main.appendChild(header);
-    main.appendChild(close);
-    main.appendChild(content);
-
-    
-  
-    // add the newly created element and its content into the DOM
-    const containerDiv = document.getElementById("tile-container");
-    containerDiv.appendChild(main);
-    makeDraggable(main);
-    //document.body.insertBefore(newDiv, containerDiv);
+  let newTile = new Tile(0);
+  newTile.initHTML();
 }
 
-
+function editDivContents(item) {
+  console.log("Edit div " + item);
+  const ele = document.getElementById($(item).attr('id'));
+  ele.style.backgroundColor = 'paleyellow';
+  ele.innerHTML = "!!";
+  console.log(ele);
+}
 
 function closeDiv(item) {
     console.log('Close div ' + item);
