@@ -8,11 +8,22 @@ class Tile{
       // FIXME make struct?
       this.state = 0;
       this.bgColor = defaultBgColor;
+      this.name = "temp";
+      this.ID = 9;
   }
 
   setState(newState) {
       this.state = newState;
   }
+
+  getName(){
+    return this.name;
+  }
+
+  setName(newName){
+    return this.name = newName;
+  }
+
   initHTML() { 
     console.log("Tiles.initHTML()");
     // create new divs
@@ -21,7 +32,9 @@ class Tile{
     // create header
     const header = document.createElement("div");
     header.className = "tile-header";
-    const headerContent = document.createTextNode("header");
+    var nameText = "header";
+    this.name = (nameText);
+    const headerContent = document.createTextNode(nameText);
     header.appendChild(headerContent);
     // create edit button
     const edit = document.createElement("div");
@@ -57,10 +70,12 @@ class Tile{
     const containerDiv = document.getElementById("tile-container");
     containerDiv.appendChild(main);
     makeDraggable(main);
+    
   }
-  
-  
+
 } 
+
+
 
 
 window.addEventListener('load', (event) => {
@@ -72,7 +87,7 @@ window.addEventListener('load', (event) => {
         var divStyle = divs[i].style;
         // FIX ME what should initial positions be set based on?
         divStyle.left = i * 38 + '%';
-        console.log(divs[i] + " " + divStyle);
+        // console.log(divs[i] + " " + divStyle);
         makeDraggable(divs[i]);
     } 
   });
@@ -83,6 +98,13 @@ function createDiv () {
   
   let newTile = new Tile(0);
   newTile.initHTML();
+
+  // add to sidebar
+
+  newTile.setName("ok");
+  var html_to_insert = "<p>"+newTile.getName()+"<p>";
+  document.getElementById('s2').insertAdjacentHTML('beforeend', html_to_insert);
+
 }
 
 function editDivContents(item) {
