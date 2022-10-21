@@ -1,7 +1,7 @@
 // import { Tile, initHTML } from './Tiles.js';
 
 var defaultBgColor = 'paleyellow';
-
+var count = 0;
 
 class Tile{
   constructor(state, bgColor) {
@@ -9,7 +9,7 @@ class Tile{
       this.state = 0;
       this.bgColor = defaultBgColor;
       this.name = "temp";
-      this.ID = 9;
+      console.log(" new Tile with ID " + this.ID);
   }
 
   setState(newState) {
@@ -29,6 +29,7 @@ class Tile{
     // create new divs
     const main = document.createElement("div");
     main.className = "tile-box";
+    
     // create header
     const header = document.createElement("div");
     header.className = "tile-header";
@@ -36,40 +37,50 @@ class Tile{
     this.name = (nameText);
     const headerContent = document.createTextNode(nameText);
     header.appendChild(headerContent);
-    // create edit button
-    const edit = document.createElement("div");
-    edit.className = "tile-edit";
-    const editContent = document.createTextNode("E");
-    const thisEditId = 'edit-9';
-    edit.id = thisEditId;
-    edit.addEventListener('click', function(e) {
-      editDivContents(document.getElementById(thisEditId));
-    });
-    edit.appendChild(editContent);
+
     // create close button
     const close = document.createElement("div");
     close.className = "tile-close";
     const closeContent = document.createTextNode("X");
-    const thisId = "close-9";
+    const thisId = "close-"+count;
     close.id = thisId;
     close.addEventListener('click', function(e) {
       closeDiv(document.getElementById(thisId));
     });
     close.appendChild(closeContent);
+
     // create content area
     const content = document.createElement("div");
     content.className = "tile-content";
     const contentContent = document.createTextNode("content");
+    const thisContentID = 'content-'+count;
+    content.id = thisContentID;
     content.appendChild(contentContent);
+
+    // create edit button
+    const edit = document.createElement("div");
+    edit.className = "tile-edit";
+    const editContent = document.createTextNode("E");
+    const thisEditId = 'edit-'+count;
+    // edit.id = thisEditId;
+    edit.addEventListener('click', function(e) {
+      // pass content ID cuz thats what we will edit
+      editDivContents(content);
+    });
+    edit.appendChild(editContent);
+    
     // add all sections to main
     main.appendChild(header);
     main.appendChild(edit);
     main.appendChild(close);
     main.appendChild(content);
+    
     // add the newly created Tile into the DOM
     const containerDiv = document.getElementById("tile-container");
     containerDiv.appendChild(main);
     makeDraggable(main);
+
+    count++;
     
   }
 
@@ -79,6 +90,14 @@ class Tile{
 
 
 window.addEventListener('load', (event) => {
+
+    // create two default Tiles
+
+    let t1 = new Tile(0);
+    t1.initHTML();
+    let t2 = new Tile(1);
+    t2.initHTML();
+
     // get all divs 
     const divs = document.getElementById('tile-container').getElementsByClassName('tile-box');
     // make the divs draggable
@@ -100,7 +119,6 @@ function createDiv () {
   newTile.initHTML();
 
   // add to sidebar
-
   newTile.setName("ok");
   var html_to_insert = "<p>"+newTile.getName()+"<p>";
   document.getElementById('s2').insertAdjacentHTML('beforeend', html_to_insert);
@@ -108,10 +126,15 @@ function createDiv () {
 }
 
 function editDivContents(item) {
-  console.log("Edit div " + item);
-  const ele = document.getElementById($(item).attr('id'));
+  console.log("Edit div " + item.id);
+  const ele = document.getElementById(item.id);
   ele.style.backgroundColor = 'paleyellow';
-  ele.innerHTML = "!!";
+  
+  ele.innerHTML = "<input type=\"text\" id=\"myText\" value=\"Mickey\">" +
+                  "<button type=\"button\" onclick=\"myFunction()\">Try it</button>" + 
+                  "<p id=\"demo\"></p>";
+  
+  
   console.log(ele);
 }
 
